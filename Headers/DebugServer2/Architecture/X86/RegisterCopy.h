@@ -104,6 +104,10 @@ namespace X86 {
 #define USER_GP_REG(NAME) r_r##NAME
 #define USER_SS_REG(NAME) r_##NAME
 #define USER_FLAGS_REG() r_rflags
+#elif defined(OS_NETBSD) && defined(ARCH_X86_64) // TODO: ?
+#define USER_GP_REG(NAME) r_r##NAME
+#define USER_SS_REG(NAME) r_##NAME
+#define USER_FLAGS_REG() r_rflags
 #elif defined(OS_WIN32) && defined(ARCH_X86)
 #define USER_GP_REG(NAME) E##NAME
 #define USER_SS_REG(NAME) Seg##NAME

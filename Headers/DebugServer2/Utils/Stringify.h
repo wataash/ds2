@@ -47,7 +47,7 @@ public:
 
 #if defined(OS_DARWIN)
 #define ATT_TLS __thread
-#elif defined(OS_LINUX) || defined(OS_FREEBSD) || defined(OS_WIN32)
+#elif defined(OS_LINUX) || defined(OS_FREEBSD) || defined(OS_NETBSD) || defined(OS_WIN32) // TODO: ?
 #define ATT_TLS thread_local
 #else
 #error "Target not supported."

@@ -18,6 +18,8 @@
 #include "DebugServer2/Target/Windows/Process.h"
 #elif defined(OS_FREEBSD)
 #include "DebugServer2/Target/FreeBSD/Process.h"
+#elif defined(OS_NETBSD)
+#include "DebugServer2/Target/NetBSD/Process.h"
 #elif defined(OS_DARWIN)
 #include "DebugServer2/Target/Darwin/Process.h"
 #else
@@ -33,6 +35,8 @@ using Linux::Process;
 using Windows::Process;
 #elif defined(OS_FREEBSD)
 using FreeBSD::Process;
+#elif defined(OS_NetBSD)
+using NetBSD::Process;
 #elif defined(OS_DARWIN)
 using Darwin::Process;
 #else

@@ -118,7 +118,7 @@ protected:
 #endif
     typedef void *PTraceAddrType;
     typedef void *PTraceDataType;
-#elif defined(OS_FREEBSD) || defined(OS_DARWIN)
+#elif defined(OS_FREEBSD) || defined(OS_NETBSD) || defined(OS_DARWIN) // TODO: ?
     typedef int PTraceRequestType;
     typedef caddr_t PTraceAddrType;
     typedef int PTraceDataType;

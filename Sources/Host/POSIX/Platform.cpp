@@ -22,7 +22,7 @@
 #include <string>
 #include <unistd.h>
 
-#if defined(OS_FREEBSD) || defined(OS_DARWIN)
+#if defined(OS_FREEBSD) || defined(OS_NETBSD) || defined(OS_DARWIN) // TODO: ?
 #include <sys/socket.h>
 #include <sys/types.h>
 

@@ -21,12 +21,9 @@
 using ds2::Architecture::GDBDescriptor;
 using ds2::Architecture::LLDBDescriptor;
 
-#error "really linux?"
-
 namespace ds2 {
 namespace Target {
-// ???
-namespace Linux {
+namespace Linux { // ???
 
 static uint8_t const gMmapCode[] = {
     0xb8, 0x00, 0x00, 0x00, 0x00, // 00: movl $sysno, %eax

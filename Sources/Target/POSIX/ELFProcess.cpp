@@ -16,7 +16,7 @@
 #include <limits>
 #include <link.h>
 
-#if defined(OS_FREEBSD)
+#if defined(OS_FREEBSD) || defined(OS_NETBSD) // TODO: ?
 #include <machine/elf.h>
 typedef Elf32_Auxinfo Elf32_auxv_t;
 typedef Elf64_Auxinfo Elf64_auxv_t;
@@ -190,6 +190,7 @@ EnumerateLinkMap(ELFProcess *process, Address addressToDPtr,
 
 // Android and FreeBSD don't have a definition for LAV_CURRENT so we skip this
 // check.
+// TODO: ?
 #if defined(LAV_CURRENT)
   if (debug.version != LAV_CURRENT) {
     return kErrorUnsupported;
@@ -216,6 +217,9 @@ EnumerateLinkMap(ELFProcess *process, Address addressToDPtr,
     shlib.main = shlib.svr4.ldAddress == 0;
 #elif defined(OS_FREEBSD)
     // FIXME(sas): not sure how exactly to determine this on FreeBSD.
+    shlib.main = false;
+#elif defined(OS_NETBSD)
+    // TODO: ?
     shlib.main = false;
 #else
 #error "Target not supported."

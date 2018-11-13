@@ -81,7 +81,7 @@ ErrorCode DebugSessionImplBase::onQuerySupported(
   localFeatures.push_back(std::string("PacketSize=3fff"));
   localFeatures.push_back(std::string("QStartNoAckMode+"));
   localFeatures.push_back(std::string("qXfer:features:read+"));
-#if defined(OS_LINUX) || defined(OS_FREEBSD)
+#if defined(OS_LINUX) || defined(OS_FREEBSD) || defined(OS_NETBSD) // TODO: ?
   localFeatures.push_back(std::string("qXfer:auxv:read+"));
   localFeatures.push_back(std::string("qXfer:libraries-svr4:read+"));
 #elif defined(OS_WIN32)

@@ -347,7 +347,7 @@ char const *Stringify::PTraceCommand(int code) {
     DO_STRINGIFY(PTRACE_GETFPXREGS)
     DO_STRINGIFY(PTRACE_SETFPXREGS)
 #endif
-#elif defined(OS_DARWIN) || defined(OS_FREEBSD)
+#elif defined(OS_DARWIN) || defined(OS_FREEBSD) || defined(OS_NETBSD) // TODO: ?
 #if defined(OS_DARWIN)
     DO_STRINGIFY(PT_ATTACHEXC)
     DO_STRINGIFY(PT_SIGEXC)

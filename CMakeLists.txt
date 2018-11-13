@@ -160,6 +160,14 @@ set(HOST_FreeBSD_SOURCES
     Sources/Host/FreeBSD/${ARCH_NAME}/PTrace${ARCH_NAME}.cpp
     )
 
+set(HOST_NetBSD_SOURCES
+    ${HOST_POSIX_SOURCES}
+    Sources/Host/NetBSD/ProcStat.cpp
+    Sources/Host/NetBSD/Platform.cpp
+    Sources/Host/NetBSD/PTrace.cpp
+    Sources/Host/NetBSD/${ARCH_NAME}/PTrace${ARCH_NAME}.cpp
+    )
+
 set(HOST_Windows_SOURCES
     Sources/Host/Windows/File.cpp
     Sources/Host/Windows/Platform.cpp
@@ -206,6 +214,14 @@ set(TARGET_FreeBSD_SOURCES
     Sources/Target/FreeBSD/Process.cpp
     Sources/Target/FreeBSD/${ARCH_NAME}/Process${ARCH_NAME}.cpp
     Sources/Target/FreeBSD/Thread.cpp
+    )
+
+set(TARGET_NetBSD_SOURCES
+    ${TARGET_POSIX_ELF_SOURCES}
+    ${TARGET_POSIX_SOURCES}
+    Sources/Target/NetBSD/Process.cpp
+    Sources/Target/NetBSD/${ARCH_NAME}/Process${ARCH_NAME}.cpp
+    Sources/Target/NetBSD/Thread.cpp
     )
 
 set(TARGET_Windows_SOURCES
@@ -257,6 +273,11 @@ set(UTILS_Darwin_SOURCES
     )
 
 set(UTILS_FreeBSD_SOURCES
+    ${SUPPORT_POSIX_ELF_SOURCES}
+    ${UTILS_POSIX_SOURCES}
+    )
+
+set(UTILS_NetBSD_SOURCES
     ${SUPPORT_POSIX_ELF_SOURCES}
     ${UTILS_POSIX_SOURCES}
     )
@@ -463,6 +484,11 @@ elseif ("${OS_NAME}" MATCHES "Linux" AND NOT TIZEN)
 endif ()
 
 if ("${OS_NAME}" MATCHES "FreeBSD")
+  target_link_libraries(ds2 util procstat)
+endif ()
+
+# TODO: ?
+if ("${OS_NAME}" MATCHES "NetBSD")
   target_link_libraries(ds2 util procstat)
 endif ()
 

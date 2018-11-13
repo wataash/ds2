@@ -20,7 +20,7 @@ namespace POSIX {
 
 #if defined(OS_LINUX)
 #define PTCMD(CMD) PTRACE_##CMD
-#elif defined(OS_FREEBSD) || defined(OS_DARWIN)
+#elif defined(OS_FREEBSD) || defined(OS_NETBSD) || defined(OS_DARWIN) // TODO: ?
 #define PTCMD(CMD) PT_##CMD
 #endif
 
@@ -48,7 +48,7 @@ ErrorCode PTrace::traceMe(bool disableASLR) {
 
 #if defined(OS_LINUX)
   auto cmd = PTRACE_TRACEME;
-#elif defined(OS_FREEBSD) || defined(OS_DARWIN)
+#elif defined(OS_FREEBSD) || defined(OS_NETBSD) || defined(OS_DARWIN) // TODO: ?
   auto cmd = PT_TRACE_ME;
 #endif
 
@@ -64,7 +64,7 @@ ErrorCode PTrace::attach(ProcessId pid) {
 
   DS2LOG(Debug, "attaching to pid %" PRIu64, (uint64_t)pid);
 
-#if defined(OS_LINUX) || defined(OS_FREEBSD)
+#if defined(OS_LINUX) || defined(OS_FREEBSD) || defined(OS_NETBSD) // TODO: ?
   auto cmd = PTCMD(ATTACH);
 #elif defined(OS_DARWIN)
   auto cmd = PT_ATTACHEXC;
@@ -103,7 +103,7 @@ ErrorCode PTrace::doStepResume(bool stepping, ProcessThreadId const &ptid,
   DS2ASSERT(!address.valid());
   auto res = wrapPtrace(stepping ? PTRACE_SINGLESTEP : PTRACE_CONT, pid,
                         nullptr, signal);
-#elif defined(OS_FREEBSD) || defined(OS_DARWIN)
+#elif defined(OS_FREEBSD) || defined(OS_NETBSD) || defined(OS_DARWIN) // TODO: ?
   // (caddr_t)1 indicates that execution is to pick up where it left off.
   auto res = wrapPtrace(stepping ? PT_STEP : PT_CONTINUE, pid,
                         address.valid() ? address.value() : 1, signal);
