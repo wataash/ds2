@@ -50,6 +50,14 @@ typedef SSIZE_T ssize_t;
 #error "Target not supported."
 #endif
 
+#if defined(TEST_FREEBSD_BUILD)
+#define OS_FREEBSD
+#if defined(__linux__)
+#undef OS_LINUX
+#elif defined(__APPLE__)
+#endif
+#endif
+
 #if defined(OS_LINUX) || defined(OS_FREEBSD) || defined(OS_NETBSD) || defined(OS_DARWIN)
 #define OS_POSIX
 #endif
