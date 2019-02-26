@@ -8,6 +8,8 @@
 ## PATENTS file in the same directory.
 ##
 
+set(CMAKE_VERBOSE_MAKEFILE on)
+
 cmake_minimum_required(VERSION 3.9)
 cmake_policy(SET CMP0054 NEW)
 

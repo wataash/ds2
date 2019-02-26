@@ -8,6 +8,33 @@
 // PATENTS file in the same directory.
 //
 
+// TODO: what was this??
+// https://www.freebsd.org/cgi/man.cgi?libprocstat
+// param.h, queue.h must before libprocstat.h
+// othrewise:
+//     [ 15%] Building CXX object CMakeFiles/ds2.dir/Sources/Host/FreeBSD/ProcStat.cpp.o
+//     /usr/bin/c++   -I/root/src/ds2/Headers -I/root/src/ds2/Tools/JSObjects/Headers -Wall -Wextra -Werror -Wno-unused-parameter -Winconsistent-missing-override -std=gnu++11 -o CMakeFiles/ds2.dir/Sources/Host/FreeBSD/ProcStat.cpp.o -c /root/src/ds2/Sources/Host/FreeBSD/ProcStat.cpp
+//     In file included from /root/src/ds2/Sources/Host/FreeBSD/ProcStat.cpp:11:
+//     /usr/include/libprocstat.h:118:2: error: unknown type name 'STAILQ_ENTRY'
+//             STAILQ_ENTRY(filestat)  next;
+//             ^
+// #include <sys/param.h>
+// #include <sys/queue.h>
+// [ 15%] Building CXX object CMakeFiles/ds2.dir/Sources/Host/FreeBSD/ProcStat.cpp.o
+//     /usr/bin/c++   -I/root/src/ds2/Headers -I/root/src/ds2/Tools/JSObjects/Headers -Wall -Wextra -Werror -Wno-unused-parameter -Winconsistent-missing-override -std=gnu++11 -o CMakeFiles/ds2.dir/Sources/Host/FreeBSD/ProcStat.cpp.o -c /root/src/ds2/Sources/Host/FreeBSD/ProcStat.cpp
+//     In file included from /root/src/ds2/Sources/Host/FreeBSD/ProcStat.cpp:22:
+//     /usr/include/libprocstat.h:157:26: error: field has incomplete type 'struct sockaddr_storage'
+//             struct sockaddr_storage sa_local;       /* Socket address. */
+//                                     ^
+// to fix:
+//     [ 15%] Building CXX object CMakeFiles/ds2.dir/Sources/Host/FreeBSD/ProcStat.cpp.o
+//     /usr/bin/c++   -I/root/src/ds2/Headers -I/root/src/ds2/Tools/JSObjects/Headers -Wall -Wextra -Werror -Wno-unused-parameter -Winconsistent-missing-override -std=gnu++11 -o CMakeFiles/ds2.dir/Sources/Host/FreeBSD/ProcStat.cpp.o -c /root/src/ds2/Sources/Host/FreeBSD/ProcStat.cpp
+//     In file included from /root/src/ds2/Sources/Host/FreeBSD/ProcStat.cpp:22:
+//     /usr/include/libprocstat.h:157:26: error: field has incomplete type 'struct sockaddr_storage'
+//             struct sockaddr_storage sa_local;       /* Socket address. */
+//                                     ^
+// #include <sys/socket.h>
+
 // clang-format off
 #include <sys/param.h>
 #include <sys/queue.h>
