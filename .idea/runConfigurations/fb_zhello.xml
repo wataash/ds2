@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="fb zhello" type="CLion_Remote" remoteCommand=":11142" symbolFile="$PROJECT_DIR$/ds2-fb" sysroot="$PROJECT_DIR$/../freebsd-sysroot">
+    <pathMapping remote=":/root/src/ds2" local="$PROJECT_DIR$" />
+    <method v="2" />
+  </configuration>
+</component>
